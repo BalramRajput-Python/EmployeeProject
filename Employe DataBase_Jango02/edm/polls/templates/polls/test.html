@@ -1,0 +1,65 @@
+{%extends 'polls/base.html'%}
+{% block title %} EDM-Employee Test {% endblock %}
+
+
+{% block content %}
+
+<h3 class="mt-5">Employee Test</h3>
+<table class="table table-light table-bordered table-striped mt-5" id="maintable">
+  <tbody>
+   {%for i in Q%} 
+  <tr>
+      <th>Question {{forloop.counter}}</th>
+      <td>{{i.question}}</td>
+  </tr>
+  <tr>
+    <td><input type="radio" name="ans1" ></td>
+    <td id="ans1">{{i.ch1}}</td>
+  </tr>
+  <tr>
+      <th><input type="radio" name="ans2"></th>
+      <td>{{i.ch2}}</td>
+  </tr>
+  <tr>
+        <th><input type="radio" name="ans3"></th>
+        <td>{{i.ch3}}</td>
+</tr>
+ {% endfor %}
+</tbody>
+</table>
+
+<input type="button" id="btn" class="btn btn-success" value="Submit">
+
+
+<div class="container">
+
+  <div id="loaddata">This is going to change the world</div>
+  <input type="button" class="btn btn-danger" id="btnclick" value="click it">
+
+</div>
+
+{% if data.user_type == "HR" %}
+    <div class="text-right">
+    <a class="btn btn-warning" href="{%url 'edit_employee' data.user.id%}">Edit</a>
+    <a class="btn btn-danger" href="{%url 'delete_employee' data.user.id%}">Delete</a>
+    </div>
+{% endif %}
+
+{% endblock %} 
+
+{% block script%}
+
+<script>
+
+    $(document).ready(function(){
+  
+      $('#btnclick').click(function(){
+        
+        $('#loaddata').load('employee_test')
+  
+      });
+  
+  });
+
+</script>
+{% endblock %}

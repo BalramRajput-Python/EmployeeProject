@@ -1,0 +1,20 @@
+{% extends 'employee/base.html'%}
+{% block title %} EDM-Add Employee {% endblock %}
+{% block content%}
+
+<h3>Employee Details Form</h3>
+
+<form method="POST"> 
+  <table class="table table-bordered mt-5">
+    {% csrf_token %}
+    
+    {{employee_form.as_table}}
+    {{employee_form2.as_table}}
+            
+  </table>
+  <button type="submit" class="btn btn-success float-right">Submit</button>
+
+
+</form>
+
+{% endblock %}

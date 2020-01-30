@@ -1,0 +1,73 @@
+{% extends 'employee/base.html'%}
+
+{% block title %} EDM-Home {% endblock %}
+{% block content%}
+
+<h5 class="float-left mt-2 mb-3">User : {{request.user.first_name}} {{request.user.last_name}} <br> Role : {{role.user_type}} <br>Last login : {{request.user.last_login}} </h5>
+{% if role.user_type == "HR" %}
+<a href="/edm/add/" class="btn btn-success float-right mt-5 mb-3">Add Employee</a> 
+    <table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Employee Name</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+                <tbody>
+                    {% for i in data%}
+                    <tr>
+                        <th scope="row">
+                            {{i.first_name}}{{i.last_name}}
+                            <span class="badge badge-default">{% for x in data2 %}
+                                {% if x.user_id == i.id %}
+                                {{x.user_type}}
+                                {% endif %}
+                            {% endfor %}</span>
+                        </th>
+                        <td class="text-center">
+                            <a class="btn btn-primary" href="{%url 'details_employee' i.id%}">Details</a>
+                            <a class="btn btn-warning" href="{%url 'edit_employee' i.id%}">Edit</a>
+                            <a class="btn btn-danger" href="{% url 'delete_employee' i.id%}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    {% endif %}
+                </tbody>
+
+              {% if role.user_type == "Employee" %}
+              
+              <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Role</th>
+                            <th>Last Login</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>                
+              <tbody>
+                   <tr>
+                      <th scope="row">
+                          {{x.first_name}}{{x.last_name}}
+                          <span class="badge badge-default">
+                              {{x.email | capfirst}}
+                          </span>
+                      </td>
+                      <th scope="row" >{{role.user_type}}</th>
+                      <th>{{request.user.last_login}}</th>
+                      
+                      <td class="text-center">
+                          <a class="btn btn-primary" href="{%url 'details_employee' x.id %}">View Profile</a>
+                      </td>
+                  </tr>
+               
+              </tbody>
+  </table>
+
+  <!-- <a class="btn btn-success" href="{%url 'employee_test' x.id %}">Start Employee Test</a> -->
+  
+
+  {% endif %}
+{% endblock %}
+

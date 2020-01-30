@@ -1,0 +1,18 @@
+{% extends 'polls/base.html' %}
+
+{% block title %} EDM-Edit Questions {% endblock %}
+
+{% block content%}
+
+<h3>Edit Questions</h3>
+
+<form method="POST"> 
+  <table class="table table-bordered mt-5">
+    {% csrf_token %}
+    {{question_form}}
+  </table>
+  <button type="submit" class="btn btn-success float-right">Submit</button>
+  {{error}}
+</form>
+
+{% endblock%}

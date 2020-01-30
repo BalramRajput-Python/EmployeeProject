@@ -1,0 +1,62 @@
+{% extends 'polls/base.html' %}
+
+{% block title %} EDM-View Questions {% endblock %}
+
+{% block content%}
+
+<h3 class="mt-2">Questions List</h3>
+
+{% if user_role == "HR"%}
+
+
+<a class="btn btn-success float-right" href="{% url 'polls_addquestion' %}" >Add Questions</a>
+
+<table class="table table-dark table-bordered table-striped mt-5"1>
+  <tbody>
+
+  <tr>
+      <th>S.No</th>    
+      <th>Questions</th>
+      <th class="text-center">Actions</th>
+  </tr>
+
+  {% for i in questions %}
+  <tr>
+      
+      <td>{{forloop.counter}}</td>
+      <td>{{i.question}}</td>
+      <td class="text-center">
+              <a class="btn btn-primary" href="{%url 'polls_viewquestion' i.id%}">View</a>  
+              <a class="btn btn-warning" href="{%url 'polls_editquestion' i.id %}">Edit</a>
+              <a class="btn btn-danger" href="{%url 'polls_deletequestion' i.id%}">Delete</a>
+      </td>
+
+  {% endfor %}
+
+{% endif %} 
+
+{% if user_role == "Employee"%}
+
+<table class="table table-dark table-bordered table-striped mt-5"1>
+  <tbody>
+
+  <tr>
+      <th>S.No</th>    
+      <th class="text-center">Questions</th>
+  </tr>
+
+  {% for i in questions %}
+  <tr>
+      
+      <td>{{forloop.counter}}</td>
+      <td>{{i.question}}</td>
+
+  {% endfor %}
+
+{% endif %} 
+
+
+</tbody>
+</table>
+
+{% endblock%}

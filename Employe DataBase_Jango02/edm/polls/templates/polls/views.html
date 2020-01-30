@@ -1,0 +1,39 @@
+{% extends 'polls/base.html' %}
+
+{% block title %} EDM-Questions {% endblock %}
+
+{% block content%}
+
+<h3 class="mt-5">Question View</h3>
+<div class="table-responsive">
+<table class="table table-bordered  mt-5">
+  <tbody class="text-center" bgcolor="#f3a683">
+
+  <tr>
+      <th >Question</th>
+      <td>{{Q.question}}</td>
+  </tr>
+  <tr> 
+      <th>Option 1</th>
+      <td>{{Q.ch1}}</td>
+  </tr>
+  <tr>
+      <th>Option 2</th>
+    <td>{{Q.ch2}}</td>   
+  </tr>
+  <tr>
+      <th>Option 3</th>
+    <td>{{Q.ch3}}</td>
+  </tr>
+  <tr bgcolor="#f5cd79">
+    <th>Answer</th>
+    <th>{{Q.ans}}</th>
+  </tr>
+  <tr>
+    <td colspan="2">Created by : {{Q.created_by.first_name}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+{% endblock%}

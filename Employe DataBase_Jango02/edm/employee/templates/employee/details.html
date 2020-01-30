@@ -1,0 +1,53 @@
+{%extends 'employee/base.html'%}
+{% block title %} EDM-Employee Details {% endblock %}
+
+
+{% block content %}
+
+<h3 class="mt-5">Details Of Employee</h3>
+<table class="table table-light table-bordered table-striped mt-5">
+  <tbody>
+
+  <tr>
+      <th>First Name</th>
+      <td>{{data.user.first_name}}</td>
+  </tr>
+  <tr>
+      <th>Last Name</th>
+      <td>{{data.user.last_name}}</td>
+  </tr>
+  <tr>
+      <th>Email Id</th>
+      <td>{{data.user.email}}</td>
+  </tr>
+  <tr>
+        <th>User Name</th>
+        <td>{{data.user.username}}</td>
+</tr>
+  <tr>
+      <th>Date Of Joining</th>
+      <td>{{data.user.date_joined}}</td>
+  </tr>
+  <tr>
+      <th>Qualification</th>
+      <td>{{data.Qualification}}</td>
+  </tr>
+  <tr>
+        <th>Work Experience</th>
+        <td>{{data.WorkExp}}</td>
+    </tr>
+    <tr>
+        <th>Role</th>
+        <td>{{data.user_type}}</td>
+    </tr>   
+    
+</tbody>
+</table>
+{% if data.user_type == "HR" %}
+    <div class="text-right">
+    <a class="btn btn-warning" href="{%url 'edit_employee' data.user.id%}">Edit</a>
+    <a class="btn btn-danger" href="{%url 'delete_employee' data.user.id%}">Delete</a>
+    </div>
+{% endif %}
+
+{% endblock %} 
